@@ -131,10 +131,15 @@
         <button id="accessRewardBtn">Access Reward</button>
     </div>
 
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/07/Rainbows.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <script>
         const moleGrid = document.getElementById('moleGrid');
         const message = document.getElementById('message');
         const accessRewardBtn = document.getElementById('accessRewardBtn');
+        const backgroundMusic = document.getElementById('backgroundMusic');
         let activeMole = null;
         let gameInterval;
         let difficulty = 800; // starting difficulty (ms)
@@ -162,6 +167,7 @@
             gameInterval = setInterval(setRandomMole, difficulty);
         }
 
+
         function whackMole(mole) {
             if (mole === activeMole) {
                 message.textContent = "You did it! Can you handle the reward?";
@@ -179,6 +185,7 @@
             createMoles();
             setRandomMole();
             gameInterval = setInterval(setRandomMole, difficulty);
+            backgroundMusic.play();
         }
 
         function createFirework() {
@@ -195,7 +202,6 @@
             // Create fireworks
             for (let i = 0; i < 50; i++) {
                 setTimeout(createFirework, i * 20);
-                console.log("Firework created");
             }
             // Redirect after a delay
             setTimeout(() => {
